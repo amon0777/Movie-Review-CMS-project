@@ -1,0 +1,154 @@
+.mainnav {
+    color: #fff;
+    background: linear-gradient(to right, #2D4A53, #34495E); /* Linear gradient background */
+    width: 100%;
+    padding: 10px 0; /* Adjust padding as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+}
+
+.mainnav nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.mainnav nav ul li {
+    display: inline;
+    margin-right: 20px; /* Adjust spacing between menu items as needed */
+}
+
+.mainnav nav ul li a {
+    color: #fff; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 50px; /* Adjust margin-top to account for navigation height */
+}
+.moviecontent {
+    margin-top: 20px;
+}
+
+.moviecontent h2 {
+    color: #2D4A53;
+}
+
+.moviecontent p {
+    color: #555;
+}
+
+.formdisplay {
+    margin-top: 20px;
+}
+
+.formdisplay label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formdisplay input[type="text"],
+.formdisplay textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formdisplay input[type="submit"] {
+    background-color: #2D4A53;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formdisplay input[type="submit"]:hover {
+    background-color: #1D3A43;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comments p {
+    margin: 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.comments p.commenter {
+    font-weight: bold;
+    color: #2D4A53;
+}
+.allmoviescontent {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.allmoviescontent .movie {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.allmoviescontent .movie h3 {
+    margin-top: 0;
+    display: inline;
+}
+
+.allmoviescontent .movie p {
+    margin-bottom: 0;
+}
+.loginbox {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.loginbox h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.loginbox label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.loginbox input[type="text"],
+.loginbox input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.loginbox button {
+    background-color:  #2D4A53;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.loginbox button:hover {
+    background-color: #555;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
