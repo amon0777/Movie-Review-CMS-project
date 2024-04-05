@@ -1,25 +1,12 @@
 <?php
-require('connect.php');
+include 'db_connection.php';
 
-// Connect to the database and fetch movie data
-$servername = "localhost";
-$username = "serveruser";
-$password = "gorgonzola7!";
-$dbname = "serverside";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 session_start(); // Start the session
 
-// Check if the user is not logged in, redirect to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-    exit;
-}
+
+$is_logged_in = isset($_SESSION["loggedin"]);
+$is_admin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 
 // Logout logic
 if(isset($_POST["logout"])) {
@@ -53,17 +40,17 @@ if(isset($_POST["logout"])) {
                 <label for="genre">Genre</label>
                 <select id="genre" onchange="window.location.href=this.value;">
                     <option value="">Select Genre</option> <!-- Empty value for default selection -->
-                    <?php
+                      <?php
                     require('connect.php');
 
                     // Query to fetch distinct genres
-                    $sqlGenres = "SELECT DISTINCT genre FROM movie_data";
+                    $sqlGenres = "SELECT genre_name FROM genres";
                     $resultGenres = $conn->query($sqlGenres);
 
                     if ($resultGenres->num_rows > 0) {
                         while($row = $resultGenres->fetch_assoc()) {
-                            $genre = $row['genre'];
-                            echo "<option value='genre.php?genre=$genre'>$genre</option>";
+                            $genre = $row['genre_name'];
+                            echo "<option value='home.php?genre=$genre'>$genre</option>";
                         }
                     } else {
                         echo "<option value=''>No genres found</option>"; 
@@ -71,8 +58,48 @@ if(isset($_POST["logout"])) {
                     ?>
                 </select>
             </li>
-            <li><a href="register.php"> Sign Up</a></li>
-                <li><a href="dashboard.php">User Profile</a></li>
+             <?php
+        // If user is not logged in, show login link
+        if (!$is_logged_in) {
+            echo '<li><a href="login.php">Login</a></li>';
+        }
+
+                    if ($is_logged_in) {
+            // Show logout link
+            echo '<li><a href="dashboard.php">User Profile</a></li>';
+        }
+            
+            // If user is admin, show admin link
+            if ($is_admin) {
+                echo '<li><a href="admin_dashboard.php">Admin Panel</a></li>';
+        }
+        ?>
+           <li>
+    <form action="search.php" method="GET">
+        <input type="text" id ="searchInput" name="query" placeholder="Search...">
+        <select id="genre" onchange="window.location.href=this.value;">
+                    <option value="">Genres</option> <!-- Empty value for default selection -->
+                    <?php
+                    require('connect.php');
+
+                    // Query to fetch distinct genres
+                    $sqlGenres = "SELECT genre_name FROM genres";
+                    $resultGenres = $conn->query($sqlGenres);
+
+                    if ($resultGenres->num_rows > 0) {
+                        while($row = $resultGenres->fetch_assoc()) {
+                            $genre = $row['genre_name'];
+                            echo "<option value='home.php?genre=$genre'>$genre</option>";
+                        }
+                    } else {
+                        echo "<option value=''>No genres found</option>"; 
+                    }
+                    ?>
+                </select>
+        <button type="submit">Search</button>
+    </form>
+</li>
+
                 
         </ul>
     </nav>
@@ -84,5 +111,6 @@ if(isset($_POST["logout"])) {
                         <button type="submit" name="logout">Logout</button>
                     </form>
                 </li>
+                <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

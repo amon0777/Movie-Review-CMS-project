@@ -1,16 +1,6 @@
 <?php
-require('connect.php'); // Include database connection script
+include 'db_connection.php';
 
-$servername = "localhost";
-$username = "serveruser";
-$password = "gorgonzola7!";
-$dbname = "serverside";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -81,17 +71,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="genre">Genre</label>
                 <select id="genre" onchange="window.location.href=this.value;">
                     <option value="">Select Genre</option> <!-- Empty value for default selection -->
-                    <?php
+                       <?php
                     require('connect.php');
 
                     // Query to fetch distinct genres
-                    $sqlGenres = "SELECT DISTINCT genre FROM movie_data";
+                    $sqlGenres = "SELECT genre_name FROM genres";
                     $resultGenres = $conn->query($sqlGenres);
 
                     if ($resultGenres->num_rows > 0) {
                         while($row = $resultGenres->fetch_assoc()) {
-                            $genre = $row['genre'];
-                            echo "<option value='genre.php?genre=$genre'>$genre</option>";
+                            $genre = $row['genre_name'];
+                            echo "<option value='home.php?genre=$genre'>$genre</option>";
                         }
                     } else {
                         echo "<option value=''>No genres found</option>"; 
@@ -102,9 +92,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="register.php"> Sign Up</a></li>
         <li><a href="login.php">Log In</a></li>
             <li><a href="dashboard.php">User Profile</a></li>
+                        <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+
     
             <!-- Add links to other sections/pages here -->
         </ul>
+          <li>
+    <form action="search.php" method="GET">
+        <input type="text" id ="searchInput" name="query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+</li>
+
     </nav>
     </div>
     
@@ -120,5 +119,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="confirm_password" name="confirm_password" required><br><br>
         <input type="submit" value="Register">
     </form>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

@@ -1,110 +1,209 @@
-.mainnav {
-    color: #fff;
-    background: linear-gradient(to right, #2D4A53, #34495E); /* Linear gradient background */
-    width: 100%;
-    padding: 10px 0; /* Adjust padding as needed */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
-}
-
-.mainnav nav ul {
+body {
+  font-family: "Cinzel", serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    list-style-type: none;
+}
+.cinzel-decorative-regular {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.mainnav nav ul li {
-    display: inline;
-    margin-right: 20px; /* Adjust spacing between menu items as needed */
+.head{
+     font-family: "Nanum Myeongjo", serif;
+        text-align: center;
+            font-size: 36px;
+            color: #fff; /* Default color */
+            transition: color 0.5s ease; /* Transition effect for color change */
+            cursor: pointer; /* Change cursor to pointer on hover */
 }
 
-.mainnav nav ul li a {
-    color: #fff; /* Adjust text color as needed */
-    text-decoration: none;
+        .head:hover {
+            color: #333; /* Change color on hover */
+        }
+  .mainnav {
+            font-family: "Nanum Myeongjo", serif;
+            background-color: #132E35; /* Set background color */
+            color: #fff; /* Set text color */
+            padding: 10px 0; /* Add padding */
+            text-align: center; /* Center align text */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+            transition: background-color 0.3s ease; /* Add transition effect */
+        }
+
+        .mainnav:hover {
+            background-color: #2D4A53; /* Darker background on hover */
+        }
+
+        .mainnav .head {
+            font-size: 24px; /* Larger font size */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            font-weight: bold; /* Bold font weight */
+            text-transform: uppercase; /* Uppercase text */
+            letter-spacing: 2px; /* Add letter spacing */
+            transition: color 0.3s ease; /* Add transition effect */
+        }
+
+        .mainnav .head:hover {
+            color: #ffcc00; /* Change color on hover */
+        }
+
+        .mainnav ul {
+            list-style-type: none; /* Remove list styles */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center align items horizontally */
+        }
+
+        .mainnav ul li {
+            margin: 0 15px; /* Add spacing between items */
+            display: inline; /* Display items inline */
+        }
+
+        .mainnav ul li a {
+            color: #fff; /* Set link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease; /* Add transition effect */
+        }
+
+        .mainnav ul li a:hover {
+            color: #ffcc00; /* Change link color on hover */
+        }
+        .mainnav form {
+    display: inline-block; /* Ensure the form is displayed inline */
+    margin-left: 15px; /* Add some spacing between the form and other navigation items */
 }
 
-.content {
-    margin-top: 50px; /* Adjust margin-top to account for navigation height */
+.mainnav form input[type="text"],
+.mainnav form button {
+    padding: 5px 10px; /* Add padding to the input and button */
+    border: 1px solid #fff; /* Add a border to the input and button */
+    background-color: transparent; /* Make the background transparent */
+    color: #fff; /* Set text color to white */
 }
+
+.mainnav form button {
+    background-color: #ffcc00; /* Set button background color */
+    color: #132E35; /* Set button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.mainnav form button:hover {
+    background-color: #fff; /* Change button background color on hover */
+    color: #132E35; /* Change button text color on hover */
+}
+
+
 .moviecontent {
-    margin-top: 20px;
+    margin-bottom: 20px;
+     font-family: "Cinzel Decorative", serif;
 }
 
-.moviecontent h2 {
-    color: #2D4A53;
+.moviecontent img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
 
-.moviecontent p {
-    color: #555;
-}
-
+/* Form display styles */
 .formdisplay {
-    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.formdisplay form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .formdisplay label {
     display: block;
     margin-bottom: 5px;
+    color: #333;
+}
+.mainnav form {
+    display: inline-block; /* Ensure the form is displayed inline */
+    margin-left: 15px; /* Add some spacing between the form and other navigation items */
+}
+
+.mainnav form input[type="text"],
+.mainnav form button {
+    padding: 5px 10px; /* Add padding to the input and button */
+    border: 1px solid #fff; /* Add a border to the input and button */
+    background-color: transparent; /* Make the background transparent */
+    color: #fff; /* Set text color to white */
+}
+
+.mainnav form button {
+    background-color: #ffcc00; /* Set button background color */
+    color: #132E35; /* Set button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.mainnav form button:hover {
+    background-color: #fff; /* Change button background color on hover */
+    color: #132E35; /* Change button text color on hover */
 }
 
 .formdisplay input[type="text"],
 .formdisplay textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .formdisplay input[type="submit"] {
-    background-color: #2D4A53;
+    background-color: #007bff;
     color: #fff;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .formdisplay input[type="submit"]:hover {
-    background-color: #1D3A43;
+    background-color: #0056b3;
 }
-
 .comments {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.comments p {
-    margin: 0;
-    padding: 10px;
+.comment {
     background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.comments p.commenter {
+.comment .comment-info {
+    margin-bottom: 10px;
+}
+
+.comment .comment-info .commenter-name {
     font-weight: bold;
-    color: #2D4A53;
-}
-.allmoviescontent {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    color: #333;
 }
 
-.allmoviescontent .movie {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #f9f9f9;
+.comment .comment-info  {
+    color: #777;
 }
 
-.allmoviescontent .movie h3 {
-    margin-top: 0;
-    display: inline;
+.comment .comment-text {
+    color: #666;
 }
 
-.allmoviescontent .movie p {
-    margin-bottom: 0;
-}
+
+
 .loginbox {
     background-color: #fff;
     border-radius: 10px;
@@ -151,4 +250,290 @@
 .error {
     color: red;
     margin-top: 10px;
+}
+
+
+.allmoviescontent {
+    display: flex; /* Use flexbox to create horizontal layout */
+    flex-wrap: wrap; /* Wrap items to next line if necessary */
+    justify-content: center; /* Center items horizontally */
+}
+.movie {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease; /* Add transition effect to transform property */
+        }
+
+        .movie img {
+            width: 200px; /* Set width of the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Add hover effect */
+        .movie:hover {
+            transform: scale(1.1); /* Increase size on hover */
+            z-index: 1; /* Ensure hovered movie is on top of others */
+        }
+
+        /* Add overlay for movie details */
+        .overlay {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            color: white;
+            font-size: 1.2em;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease; /* Add transition effect to opacity property */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Show overlay on hover */
+        .movie:hover .overlay {
+            opacity: 1; /* Show overlay on hover */
+        }
+
+        /* Add styling for movie title */
+        .movie a {
+            color: white;
+            text-decoration: none;
+        }
+
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS for User Management Page */
+
+
+
+/* User table */
+.usertable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.usertable th, .usertable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.usertable th {
+    background-color: #f2f2f2;
+}
+
+/* Create button */
+.createbutton {
+    margin-bottom: 20px;
+}
+
+.createbutton button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.createbutton button:hover {
+    background-color: #0056b3;
+}
+
+/* Add new user form */
+.newuser {
+    margin-bottom: 20px;
+}
+
+.newuser h2 {
+    margin-bottom: 10px;
+}
+
+.newuser label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.newuser input[type="text"],
+.newuser input[type="email"],
+.newuser input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.newuser button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.newuser button:hover {
+    background-color: #218838;
+}
+
+/* Update user form */
+.updateuser, .deleteuser {
+    margin-bottom: 20px;
+}
+
+.updateuser h2, .deleteuser h2 {
+    margin-bottom: 10px;
+}
+
+.updateuser label, .deleteuser label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.updateuser input[type="text"],
+.updateuser input[type="email"],
+.deleteuser input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.updateuser button, .deleteuser button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.updateuser button:hover, .deleteuser button:hover {
+    background-color: #c82333;
+}
+
+.admindashboardcontainer {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+.usertable, .Movietable {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    font-weight: bold;
+}
+
+table td {
+    text-align: left;
+}
+
+button {
+    padding: 8px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.createbutton {
+    margin-top: 20px;
+}
+
+form li {
+    list-style: none;
+    display: inline;
+    margin-right: 10px;
+}
+
+.video-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+    z-index: -1; 
+        }
+
+        .welcomeoverlay {
+             font-family: "Cinzel Decorative", serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 5; /* Ensure the overlay is on top of the video */
+            color: #fff;
+        }
+   
+        .explore-btn {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            z-index: 5; /* Ensure the button is on top of the overlay */
+            position: relative;
+            display: inline-block;
+            margin-top: 20px; /* Adjust as needed */
+        }
+        .explore-btn:hover {
+            background-color: #ffdb4d;
+        }
+        .hidden {
+    display: none;
 }

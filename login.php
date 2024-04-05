@@ -1,23 +1,11 @@
 <?php
-require('connect.php'); // Include database connection script
+include 'db_connection.php';
 
-$servername = "localhost";
-$username = "serveruser";
-$password = "gorgonzola7!";
-$dbname = "serverside";
+session_start(); 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$is_logged_in = isset($_SESSION["loggedin"]);
+$is_admin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-session_start(); // Start the session
-
-// Check if the user is already logged in, redirect to dashboard if logged in
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
-    exit;
-}
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -54,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Store data in session variables
                 $_SESSION["loggedin"] = true;
-                $_SESSION["id"] = $id;
+                $_SESSION["user_id"] = $id;
                 $_SESSION["username"] = $username;
                 $_SESSION["role"] = $role; // Set the user's role in the session
 
@@ -92,27 +80,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="genre">Genre</label>
                 <select id="genre" onchange="window.location.href=this.value;">
                     <option value="">Select Genre</option> <!-- Empty value for default selection -->
-                    <?php
+                      <?php
                     require('connect.php');
 
                     // Query to fetch distinct genres
-                    $sqlGenres = "SELECT DISTINCT genre FROM movie_data";
+                    $sqlGenres = "SELECT genre_name FROM genres";
                     $resultGenres = $conn->query($sqlGenres);
 
                     if ($resultGenres->num_rows > 0) {
-                        while ($row = $resultGenres->fetch_assoc()) {
-                            $genre = $row['genre'];
-                            echo "<option value='genre.php?genre=$genre'>$genre</option>";
+                        while($row = $resultGenres->fetch_assoc()) {
+                            $genre = $row['genre_name'];
+                            echo "<option value='home.php?genre=$genre'>$genre</option>";
                         }
                     } else {
-                        echo "<option value=''>No genres found</option>";
+                        echo "<option value=''>No genres found</option>"; 
                     }
                     ?>
                 </select>
             </li>
-            <li><a href="register.php"> Sign Up</a></li>
-            <li><a href="login.php">Log In</a></li>
-            <li><a href="dashboard.php">User Profile</a></li>
+            <?php
+        // If user is not logged in, show login link
+        if (!$is_logged_in) {
+            echo '<li><a href="login.php">Login</a></li>';
+        }
+
+                    if ($is_logged_in) {
+            // Show logout link
+            echo '<li><a href="dashboard.php">User Profile</a></li>';
+        }
+            
+            // If user is admin, show admin link
+            if ($is_admin) {
+                echo '<li><a href="admin_dashboard.php">Admin Panel</a></li>';
+        }
+        ?>
+        
+           <li>
+    <form action="search.php" method="GET">
+        <input type="text" id ="searchInput" name="query" placeholder="Search...">
+        <select id="genre" onchange="window.location.href=this.value;">
+                    <option value="">Genres</option> <!-- Empty value for default selection -->
+                    <?php
+                    require('connect.php');
+
+                    // Query to fetch distinct genres
+                    $sqlGenres = "SELECT genre_name FROM genres";
+                    $resultGenres = $conn->query($sqlGenres);
+
+                    if ($resultGenres->num_rows > 0) {
+                        while($row = $resultGenres->fetch_assoc()) {
+                            $genre = $row['genre_name'];
+                            echo "<option value='home.php?genre=$genre'>$genre</option>";
+                        }
+                    } else {
+                        echo "<option value=''>No genres found</option>"; 
+                    }
+                    ?>
+                </select>
+        <button type="submit">Search</button>
+    </form>
+</li>
+
             <!-- Add links to other sections/pages here -->
         </ul>
     </nav>
@@ -135,7 +163,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if (isset($login_err) && !empty($login_err)) { ?>
         <div style="color: red;"><?php echo $login_err; ?></div>
     <?php } ?>
+
+<h2>Not a User? Sign Up Below</h2>
+<h3>User Registration</h3>
+    <form action="register.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+        <input type="submit" value="Register">
+    </form>
 </div>
+<script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>
