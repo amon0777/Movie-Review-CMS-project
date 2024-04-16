@@ -102,6 +102,7 @@ body {
 .moviecontent {
     margin-bottom: 20px;
      font-family: "Cinzel Decorative", serif;
+      animation: trasnitionIn 1.5s;
 }
 
 .moviecontent img {
@@ -211,6 +212,7 @@ body {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
+    animation:trasnitionIn 1.5s ;
 }
 
 .loginbox h2 {
@@ -257,6 +259,8 @@ body {
     display: flex; /* Use flexbox to create horizontal layout */
     flex-wrap: wrap; /* Wrap items to next line if necessary */
     justify-content: center; /* Center items horizontally */
+    animation: trasnitionIn 1.5s;
+   
 }
 .movie {
             display: inline-block;
@@ -438,6 +442,7 @@ body {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: trasnitionIn 1.5s;
 }
 
 h2 {
@@ -507,7 +512,6 @@ form li {
         }
 
         .welcomeoverlay {
-             font-family: "Cinzel Decorative", serif;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -536,4 +540,66 @@ form li {
         }
         .hidden {
     display: none;
+}
+
+
+@keyframes trasnitionIn{
+    from{
+        opacity: 0;
+        transform: rotateX(-10deg);
+
+    }to{
+        opacity: 1;
+        transform: rotateX(0);
+
+    }
+}
+/* Hide the registration form initially */
+#register {
+    display: none;
+}
+
+
+/* When the registration form is the target, make it visible */
+#register:target {
+    display: block;
+}
+/* Hide the loginbox container when the registration form is the target */
+#loginbox:target {
+    display: none;
+}
+#register-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#register-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"],
+#register-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#register-form input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#register-form input[type="submit"]:hover {
+    background-color: #45a049;
 }

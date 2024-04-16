@@ -246,47 +246,80 @@ $is_admin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 </div>
 <div class="Movietable">
     <h2>Manage Movies</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Director</th>
-                <th>Year</th>
-                <th>Genre</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            // Query to fetch movie data
-            $sqlMovies = "SELECT * FROM movie_data";
-            $resultMovies = $conn->query($sqlMovies);
+    
+</select>
+<?php 
+// Create a form with a dropdown menu for sorting
+echo '<form method="GET" action="">';
+echo '<label for="sort">Sort by:</label>';
+echo '<select id="sort" name="sort">';
+echo '<option value="title" ' . (isset($_GET['sort']) && $_GET['sort'] === 'title' ? 'selected' : '') . '>Title</option>';
+echo '<option value="release_year" ' . (isset($_GET['sort']) && $_GET['sort'] === 'release_year' ? 'selected' : '') . '>Year</option>';
+echo '<option value="genre" ' . (isset($_GET['sort']) && $_GET['sort'] === 'genre' ? 'selected' : '') . '>genre</option>';
+// Add other sorting options if necessary
+echo '</select>';
+echo '<button type="submit">Sort</button>';
+echo '</form>';
 
-            // Check if movie data exists and loop through the result set
-            if ($resultMovies && $resultMovies->num_rows > 0) {
-                while ($row = $resultMovies->fetch_assoc()) {
-                    $movie_id = $row['movie_id']; // Corrected variable assignment
-                    $title = $row['title'];
-                    $director = $row['director'];
-                    $year = $row['release_year'];
-                    $genre = $row['genre'];
+// Get the sort parameter from the URL, or use 'title' as the default
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'title';
 
-                    echo "<tr>";
-                    // Make movie title clickable and link to movie.php with movie_id parameter
-                    echo "<td><a href='movie.php?id=$movie_id'>$title</a></td>"; // Updated link
-                    echo "<td>$director</td>";
-                    echo "<td>$year</td>";
-                    echo "<td>$genre</td>";
-                    // Link the edit button to edit.php with movie_id parameter
-                    echo "<td><a href='edit.php?id=$movie_id'>Edit</a></td>"; // Updated link
-                    echo "<td><form method='post'><input type='hidden' name='movie_id' value='$movie_id'><button type='submit' name='delete_movie'>Delete</button></form></td>";
+// Validate the sort parameter to prevent SQL injection
+$allowed_sort_columns = ['title', 'release_year','genre'];
+if (!in_array($sort, $allowed_sort_columns)) {
+    $sort = 'title';
+}
 
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>No movies found.</td></tr>";
-            }
+// Query to fetch movie data with sorting
+$sqlMovies = "SELECT * FROM movie_data ORDER BY $sort ASC";
+$resultMovies = $conn->query($sqlMovies);
+
+// Display the table of movies
+echo '<table>';
+echo '<thead>';
+echo '<tr>';
+echo '<th>Title</th>';
+echo '<th>Director</th>';
+echo '<th>Year</th>';
+echo '<th>Genre</th>';
+echo '<th>Edit</th>';
+echo '<th>Delete</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+// Check if movies exist and loop through them
+if ($resultMovies && $resultMovies->num_rows > 0) {
+    while ($row = $resultMovies->fetch_assoc()) {
+        // Get movie details from the database row
+        $movie_id = $row['movie_id'];
+        $title = $row['title'];
+        $director = $row['director'];
+        $year = $row['release_year'];
+        $genre = $row['genre'];
+
+        echo "<tr>";
+        echo "<td><a href='movie.php?id=$movie_id'>$title</a></td>";
+        echo "<td>$director</td>";
+        echo "<td>$year</td>";
+        echo "<td>$genre</td>";
+        echo "<td><a href='edit.php?id=$movie_id'>Edit</a></td>";
+        echo "<td><form method='post' action=''>
+                 <input type='hidden' name='movie_id' value='$movie_id'>
+                 <button type='submit' name='delete_movie'>Delete</button>
+             </form></td>";
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='6'>No movies found.</td></tr>";
+}
+
+echo '</tbody>';
+echo '</table>';
+
+
+
+   
             // Handle movie deletion
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_movie"])) {
     $delete_movie_id = $_POST['movie_id'] ?? '';

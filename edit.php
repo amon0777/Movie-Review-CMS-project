@@ -256,7 +256,7 @@ if (isset($_GET['id'])) {
         echo "Movie not found!";
     }
 }
-$conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -287,8 +287,28 @@ $conn->close();
         <input type="text" name="title" value="<?php echo $movie['title']; ?>"><br>
         <label for="director">Director:</label>
         <input type="text" name="director" value="<?php echo $movie['director']; ?>"><br>
-        <label for="genre">Genre:</label>
-        <input type="text" name="genre" value="<?php echo $movie['genre']; ?>"><br>
+        Genre: <?php
+     $sqlGenres = "SELECT genre_name FROM genres";
+$resultGenres = $conn->query($sqlGenres);
+
+// Check if genres were fetched successfully
+if ($resultGenres->num_rows > 0) {
+    // Start select element
+    echo "<select id='genre' name='genre' required>";
+    echo "<option value=''>Select Genre</option>"; // Default option
+
+    // Loop through genres and create an option for each
+    while ($row = $resultGenres->fetch_assoc()) {
+        $genre = $row['genre_name'];
+        echo "<option value='$genre'>$genre</option>";
+    }
+
+    // End select element
+    echo "</select>";
+} else {
+    echo "No genres found.";
+}
+     ?><br>
         <label for="release_year">Release Year:</label>
         <input type="text" name="release_year" value="<?php echo $movie['release_year']; ?>"><br>
           <?php if (!empty($movie['image'])): ?>

@@ -68,9 +68,7 @@ $is_admin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 <body>
            <div class="video-container">
         <video autoplay muted loop  id="video-background">
-           <source src="intros/Harry potter intro.mp4" type="video/mp4"> 
-            <source src="intros/Star wars intro.mp4" type="video/mp4">
-            <source src="intros/Marvel intro.mp4" type="video/mp4">    
+           <source src="intros/mix.mp4" type="video/mp4">    
         </video>
         <!-- Overlay with welcome message and explore button -->
         <div class="welcomeoverlay">
@@ -192,7 +190,7 @@ $is_admin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
                 } else {
                     // If image is not available
                     echo "<div class='movie'>";
-                    echo "<div class='overlay'><p><a href='movie.php?id=$movie_id'>$title</a></p></div>";
+                     echo "<img src='path/to/your/placeholder/image.jpg' alt='No image available' /><p><a href='movie.php?id=$movie_id'>$title</a></p>";
                     echo "</div>";
                 }
             }

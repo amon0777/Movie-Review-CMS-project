@@ -160,13 +160,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Login</button>
         </div>
     </form>
+    <h2>Not a User? <a href="#register">Sign Up here</a></h2>
     <?php if (isset($login_err) && !empty($login_err)) { ?>
         <div style="color: red;"><?php echo $login_err; ?></div>
     <?php } ?>
+</div>
 
-<h2>Not a User? Sign Up Below</h2>
+<div id = "register" class="hidden">
 <h3>User Registration</h3>
-    <form action="register.php" method="post">
+    <form action="register.php" method="post" id ="register-form">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         <label for="email">Email:</label>
@@ -177,6 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="confirm_password" name="confirm_password" required><br><br>
         <input type="submit" value="Register">
     </form>
+</div>
 </div>
 <script type="text/javascript" src="script.js"></script>
 

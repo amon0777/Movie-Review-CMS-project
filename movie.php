@@ -109,10 +109,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment_text = isset($_POST['comment']) ? $_POST['comment'] : "";
         $commenter_name = isset($_POST['name']) ? $_POST['name'] : "";
 
+
+
+
     // Check if the user is logged in
     if (!isset($_SESSION['user_id'])) {
         // If user is not logged in, check CAPTCHA
-        if (isset($_POST['captcha']) && $_POST['captcha'] === $_SESSION['captcha']) {
+        if (isset($_POST['captcha']) && $_POST['captcha'] == $_SESSION['captcha']) {
             // CAPTCHA verification passed, proceed to insert comment
             $commenter_name = isset($_POST['name']) ? $_POST['name'] : "";
 
@@ -303,7 +306,7 @@ $stmt->close();
         <?php if (!$is_logged_in) : ?>
             <!-- Show name input if not logged in -->
             <label for="name">Name:</label>
-            <input type="text" name="name" value="<?php echo isset($commenter_name) ? htmlspecialchars($commenter_name) : ''; ?>" required><br>
+            <input type="text" name="name" value="<?php echo isset($commenter_name) ? htmlspecialchars($commenter_name) : ''; ?>" ><br>
         <?php endif; ?>
         <!-- Show comment textarea -->
         <label for="comment">Comment:</label>
@@ -413,7 +416,7 @@ if ($result_comments->num_rows > 0) {
 }
     ?>
 </div>
-<script type="text/javascript" src="script.js"></script>
+
 
 </body>
 </html>

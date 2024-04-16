@@ -59,3 +59,4 @@ window.addEventListener('DOMContentLoaded', function() {
       document.getElementById('searchResults').innerHTML = '';
     }
   });
+
